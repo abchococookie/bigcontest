@@ -3,6 +3,12 @@
 
 # In[1]:
 
+import importlib.util
+import subprocess
+import sys
+
+if importlib.util.find_spec("geopandas") is None:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "geopandas"])
 
 import geopandas as gpd
 
