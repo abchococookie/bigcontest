@@ -34,7 +34,7 @@ if update:
 # main page
 import BIGC_VIS_for_dashboard
 
-tab1, tab2, tab3, tab4, tab5 = st.tabs(["STAY", "OD-IN", "OD-OUT", "OD-DIFF", "Test"])
+tab1, tab2, tab3, tab4 = st.tabs(["STAY", "OD-IN", "OD-OUT", "OD-DIFF"])
 
 with tab1:
     st.header("STAY Visualization")
