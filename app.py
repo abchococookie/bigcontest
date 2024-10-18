@@ -34,7 +34,7 @@ if update:
 # main page
 import BIGC_VIS_for_dashboard
 
-tab1, tab2, tab3, tab4 = st.tabs(["STAY", "OD-IN", "OD-OUT", "OD-DIFF"])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["STAY", "OD-IN", "OD-OUT", "OD-DIFF", "Test"])
 
 with tab1:
     st.header("STAY Visualization")
@@ -83,3 +83,10 @@ with tab4:
     except Exception as e:
         logging.error("Error in STAY Visualization: %s", e)
         st.error("해당 날짜 및 시간에 해당하는 데이터가 없습니다.", icon="🚨")
+        
+from df_generation_for_dashboard import gen_df_stay
+with tab5:
+    st.header("Test")
+    st.info("dataframe 출력 테스트용 페이지입니다.", icon="ℹ️")
+    st.subheader("STAY")
+    st.table(gen_df_stay(st.session_state['day'], st.session_state['time']))
