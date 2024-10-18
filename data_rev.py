@@ -3,10 +3,6 @@
 
 # In[1]:
 
-import importlib.util
-import subprocess
-import sys
-
 import geopandas as gpd
 
 df = gpd.read_file('data/seoul.geojson', encoding='UTF-8')
