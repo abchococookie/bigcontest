@@ -1,5 +1,8 @@
 import streamlit as st
 import datetime
+import logging
+
+logging.basicConfig(level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s', filename='app.log')
 
 # sidebar
 with st.form("my input"):
@@ -42,6 +45,7 @@ with tab1:
         st.subheader("STAY in 3D")
         st.pydeck_chart(BIGC_VIS_for_dashboard.vis_stay_3d(st.session_state['day'], st.session_state['time']))
     except Exception as e:
+        logging.error("Error in STAY Visualization: %s", e)
         st.error("해당 날짜 및 시간에 해당하는 데이터가 없습니다.", icon="🚨")
 
 with tab2:
@@ -53,6 +57,7 @@ with tab2:
         st.subheader("OD-IN in 3D")
         st.pydeck_chart(BIGC_VIS_for_dashboard.vis_in_3d(st.session_state['day'], st.session_state['time'], st.session_state['code'], st.session_state['alpha']))
     except Exception as e:
+        logging.error("Error in STAY Visualization: %s", e)
         st.error("해당 날짜 및 시간에 해당하는 데이터가 없습니다.", icon="🚨")
 
 with tab3:
@@ -64,6 +69,7 @@ with tab3:
         st.subheader("OD-OUT in 3D")
         st.pydeck_chart(BIGC_VIS_for_dashboard.vis_out_3d(st.session_state['day'], st.session_state['time'], st.session_state['code'], st.session_state['alpha']))
     except Exception as e:
+        logging.error("Error in STAY Visualization: %s", e)
         st.error("해당 날짜 및 시간에 해당하는 데이터가 없습니다.", icon="🚨")
 
 with tab4:
@@ -75,4 +81,5 @@ with tab4:
         st.subheader("OD-DIFF in 3D")
         st.pydeck_chart(BIGC_VIS_for_dashboard.vis_diff_3d(st.session_state['day'], st.session_state['time'], st.session_state['code'], st.session_state['alpha']))
     except Exception as e:
+        logging.error("Error in STAY Visualization: %s", e)
         st.error("해당 날짜 및 시간에 해당하는 데이터가 없습니다.", icon="🚨")
