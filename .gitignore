@@ -98,3 +98,9 @@ __pycache__/df_generation_for_dashboard.cpython-312.pyc
 data/.DS_Store
 data/행정구역(동별)_20241005223439.xlsx
 data/od_raw_data/.DS_Store
+app.log
+mk_zipfile.py
+data/od.zip
+data/KIKmix_20230701.csv
+.vscode/settings.json
+__pycache__/region.cpython-312.pyc

@@ -44,6 +44,7 @@ df.head()
 
 
 df2=stay(day, time)
+df2.head()
 
 
 # In[7]:
@@ -170,6 +171,7 @@ def trunc(data,alpha): #alpha is truncation constant: data < alpha => data = 0
 
 
 from preprocessing_pkg.od import od_in, od_out
+from region import code_to_region
 
 
 # In[21]:
@@ -181,11 +183,13 @@ df_in = pd.merge(df_in, in_pop, how="left", left_on="from", right_on="origin_hdo
 del df_in["origin_hdong_cd"]
 df_in.rename(columns={"od_cnts": "pop"}, inplace=True)
 
+in_pop.head()
+
 
 # In[22]:
 
 
-sc=150
+df_in.head()
 
 
 # In[23]:
@@ -194,6 +198,10 @@ sc=150
 df_in['pop'] = df_in['pop'].fillna(0)
 df_in['scaled_pop']=df_in['pop'] / sc
 df_in['trunc_scaled_pop']=trunc(df_in['scaled_pop'],alpha)
+
+df_in['from_region'] = df_in['from'].apply(lambda x: code_to_region(x))
+df_in['to_region'] = df_in['to'].apply(lambda x: code_to_region(x))
+
 df_in.head()
 
 
@@ -212,6 +220,10 @@ df_out.rename(columns={"od_cnts": "pop"}, inplace=True)
 df_out['pop'] = df_out["pop"].fillna(0)
 df_out['scaled_pop']=df_out['pop'] / sc
 df_out['trunc_scaled_pop']=trunc(df_out['scaled_pop'],alpha)
+
+df_out['from_region'] = df_out['from'].apply(lambda x: code_to_region(x))
+df_out['to_region'] = df_out['to'].apply(lambda x: code_to_region(x))
+ 
 df_out.head()
 
 
@@ -244,5 +256,9 @@ df_diff['scaled_pop_m']=minus(df_diff['scaled_pop'])
 df_diff['trunc_scaled_pop']=trunc(abs(df_diff['scaled_pop']),alpha)
 df_diff['abs_scaled_pop']=abs(df_diff['scaled_pop'])
 df_diff['trunc_abs_scaled_pop']=abs(df_diff['trunc_scaled_pop'])
+
+df_diff['from_region'] = df_diff['from'].apply(lambda x: code_to_region(x))
+df_diff['to_region'] = df_diff['to'].apply(lambda x: code_to_region(x))
+
 df_diff.head()
 

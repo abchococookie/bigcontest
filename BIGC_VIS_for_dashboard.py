@@ -97,7 +97,7 @@ def vis_in_2d(day, time, code, alpha):
         zoom=10)
 
     tooltip = {
-        "text": "from: {from} \nto: {to} \npop: {pop}"    
+        "text": "from: {from_region} \nto: {to_region} \n인구수: {pop}"    
     }
 
     od_in_2d = pdk.Deck(layers=[layerP,layer], initial_view_state=view_state, tooltip=tooltip)
@@ -140,7 +140,7 @@ def vis_in_3d(day, time, code, alpha):
     view_state.pitch = 45
 
     tooltip = {
-        "text": "from: {from} \nto: {to} \npop: {pop}"    
+        "text": "from: {from_region} \nto: {to_region} \n인구수: {pop}"    
     }
 
     od_in_3d = pdk.Deck(layers=[layerP,layer], initial_view_state=view_state, tooltip=tooltip)
@@ -179,7 +179,7 @@ def vis_out_2d(day, time, code, alpha):
         zoom=10)
 
     tooltip = {
-        "text": "from: {from} \nto: {to} \npop: {pop}"    
+        "text": "from: {from_region} \nto: {to_region} \n인구수: {pop}"    
     }
 
     od_out_2d = pdk.Deck(layers=[layerP,layer], initial_view_state=view_state, tooltip=tooltip)
@@ -222,7 +222,7 @@ def vis_out_3d(day, time, code, alpha):
     view_state.pitch = 45
 
     tooltip = {
-        "text": "from: {from} \nto: {to} \npop: {pop}"    
+        "text": "from: {from_region} \nto: {to_region} \n인구수: {pop}"    
     }
 
     od_out_3d = pdk.Deck(layers=[layerP,layer], initial_view_state=view_state, tooltip=tooltip)
@@ -261,7 +261,7 @@ def vis_diff_2d(day, time, code, alpha):
         zoom=10)
 
     tooltip = {
-        "text": "from: {from} \nto: {to} \npop: {pop}"    
+        "text": "from: {from_region} \nto: {to_region} \n인구수: {pop}"    
     }
 
     od_diff_2d = pdk.Deck(layers=[layerP,layer], initial_view_state=view_state, tooltip=tooltip)
@@ -304,7 +304,7 @@ def vis_diff_3d(day, time, code, alpha):
     view_state.pitch = 45
 
     tooltip = {
-        "text": "from: {from} \nto: {to} \npop: {pop}"    
+        "text": "from: {from_region} \nto: {to_region} \n인구수: {pop}"    
     }
 
     od_diff_3d = pdk.Deck(layers=[layerP,layer], initial_view_state=view_state, tooltip=tooltip)

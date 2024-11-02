@@ -1,8 +1,8 @@
-import streamlit as st
 import pandas as pd
 import numpy as np
 import data_rev
 from preprocessing_pkg import stay, od
+from region import code_to_region
 
 def trunc(data,alpha): #alpha is truncation constant: data < alpha => data = 0
     data=data.to_numpy()
@@ -80,6 +80,9 @@ def gen_df_in(day, time, code_int, alpha):
     df_in['scaled_pop']=df_in['pop'] / sc
     df_in['trunc_scaled_pop']=trunc(df_in['scaled_pop'],alpha)
     
+    df_in['from_region'] = df_in['from'].apply(code_to_region)
+    df_in['to_region'] = df_in['to'].apply(code_to_region)
+    
     return df_in
 
 def gen_df_out(day, time, code_int, alpha):
@@ -105,7 +108,10 @@ def gen_df_out(day, time, code_int, alpha):
     df_out.rename(columns={"od_cnts": "pop"}, inplace=True)
     df_out['pop'] = df_out["pop"].fillna(0)
     df_out['scaled_pop']=df_out['pop'] / sc
-    df_out['trunc_scaled_pop']=trunc(df_out['scaled_pop'],alpha) 
+    df_out['trunc_scaled_pop']=trunc(df_out['scaled_pop'],alpha)
+    
+    df_out['from_region'] = df_out['from'].apply(code_to_region)
+    df_out['to_region'] = df_out['to'].apply(code_to_region) 
     
     return df_out 
 
@@ -136,5 +142,8 @@ def gen_df_diff(day, time, code_int, alpha):
     df_diff['trunc_scaled_pop']=trunc(abs(df_diff['scaled_pop']),alpha)
     df_diff['abs_scaled_pop']=abs(df_diff['scaled_pop'])
     df_diff['trunc_abs_scaled_pop']=abs(df_diff['trunc_scaled_pop'])  
+    
+    df_diff['from_region'] = df_diff['from'].apply(code_to_region)
+    df_diff['to_region'] = df_diff['to'].apply(code_to_region)
     
     return df_diff  
