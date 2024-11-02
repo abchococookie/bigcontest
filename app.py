@@ -24,13 +24,6 @@ if 'code' not in st.session_state:
 if 'alpha' not in st.session_state:
     st.session_state['alpha'] = alpha
 
-if update:
-    st.session_state['day'] = day.strftime("%Y%m%d")
-    st.session_state['time'] = time.strftime("%H").lstrip("0")  # 한 자리로 변환
-    st.session_state['code'] = str(code)
-    st.session_state['alpha'] = alpha
-    st.rerun()
-
 # main page
 import BIGC_VIS_for_dashboard
 
