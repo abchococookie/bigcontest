@@ -151,3 +151,5 @@ data/stay_raw_data/stay_20231015_1.csv
 zip_test.ipynb
 __pycache__/df_generation.cpython-312.pyc
 .DS_Store
+data/od/**
+data/stay/**

@@ -3,3 +3,4 @@ numpy==2.1.1
 streamlit==1.39.0
 geopandas==1.0.1
 pydeck==0.9.1
+gdown==5.2.0

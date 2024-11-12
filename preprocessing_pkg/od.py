@@ -1,6 +1,19 @@
 import pandas as pd
 import glob
 import zipfile
+import gdown
+
+od_sep_id = "1ybpsiqFpOJoypOYryJs_FQs1Z6RctL6F"
+od_oct_id = "1ZPBWomi-ghDy0S8FoHk0KLZBDkJwq9ce"
+
+od_sep_download = f"https://drive.google.com/uc?id={od_sep_id}"
+od_oct_download = f"https://drive.google.com/uc?id={od_oct_id}"
+
+od_sep_path = "data/od_sep.zip"
+od_oct_path = "data/od_oct.zip"
+
+gdown.download(od_sep_download, od_sep_path, quiet=False)
+gdown.download(od_oct_download, od_oct_path, quiet=False)
 
 od_zip_sep = zipfile.ZipFile("data/od_sep.zip")
 od_zip_oct = zipfile.ZipFile("data/od_oct.zip")
@@ -42,7 +55,10 @@ def od_out(date: int, start_time: int, origin: int, to_seoul: bool):
     # 해당 날짜 csv 파일 압축 풀고 읽기
     if not glob.glob(f"data/**/od_{date}_1.csv", recursive=True):
         target = [file for file in od_list if str(date) in file][0]
-        od_zip.extract(target, "data/od")
+        if "202309" in target:
+            od_zip_sep.extract(target, "data/od")
+        else:
+            od_zip_oct.extract(target, "data/od")
         csv_dir = f"data/od/{target}"
     else:
         csv_dir = glob.glob(f"data/**/od_{date}_1.csv", recursive=True)[0]
