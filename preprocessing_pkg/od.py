@@ -3,17 +3,17 @@ import glob
 import zipfile
 import gdown
 
-od_sep_id = "1ybpsiqFpOJoypOYryJs_FQs1Z6RctL6F"
-od_oct_id = "1ZPBWomi-ghDy0S8FoHk0KLZBDkJwq9ce"
-
-od_sep_download = f"https://drive.google.com/uc?id={od_sep_id}"
-od_oct_download = f"https://drive.google.com/uc?id={od_oct_id}"
-
-od_sep_path = "data/od_sep.zip"
-od_oct_path = "data/od_oct.zip"
-
-gdown.download(od_sep_download, od_sep_path, quiet=False)
-gdown.download(od_oct_download, od_oct_path, quiet=False)
+if not glob.glob("data/od_sep.zip"):
+    od_sep_id = "1ybpsiqFpOJoypOYryJs_FQs1Z6RctL6F"
+    od_sep_download = f"https://drive.google.com/uc?id={od_sep_id}"
+    od_sep_path = "data/od_sep.zip"
+    gdown.download(od_sep_download, od_sep_path, quiet=False)
+    
+if not glob.glob("data/od_oct.zip"):
+    od_oct_id = "1ZPBWomi-ghDy0S8FoHk0KLZBDkJwq9ce"
+    od_oct_download = f"https://drive.google.com/uc?id={od_oct_id}"
+    od_oct_path = "data/od_oct.zip"
+    gdown.download(od_oct_download, od_oct_path, quiet=False)
 
 od_zip_sep = zipfile.ZipFile("data/od_sep.zip")
 od_zip_oct = zipfile.ZipFile("data/od_oct.zip")
@@ -80,5 +80,4 @@ def od_out(date: int, start_time: int, origin: int, to_seoul: bool):
     # 해당되는 모든 데이터의 이동인원 summation
     df = df.groupby("dest_hdong_cd")["od_cnts"].sum().sort_values(ascending=False).reset_index()
 
-    
     return df

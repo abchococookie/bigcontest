@@ -19,7 +19,7 @@ def display_region_3(region_1, region_2):
     region_3_list = data[(data["시도명"] == region_1) & (data["시군구명"] == region_2)].drop_duplicates(subset=["읍면동명"])["읍면동명"].tolist()
     return region_3_list
 
-def find_code(region_1, region_2, region_3):
+def region_to_code(region_1, region_2, region_3):
     code = int(data[(data["시도명"] == region_1) & (data["시군구명"] == region_2) & (data["읍면동명"] == region_3)]["code"].values)
     return code
 

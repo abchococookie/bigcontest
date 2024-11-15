@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.ERROR, format='%(asctime)s - %(levelname)s - %
 
 # sidebar
 with st.sidebar:
-    st.title("빅콘 딸깍 🖱️")
+    st.title("ALL YOU NEED iS 🖱️")
     region_1 = st.selectbox("🧭 시/도를 선택하세요", options=region.region_1_list, key="region_1_selected")
     region_2 = st.selectbox("🧭 시/군/구를 선택하세요", options=region.display_region_2(st.session_state.region_1_selected), key="region_2_selected")
     region_3 = st.selectbox("🧭 읍/면/동을 선택하세요", options=region.display_region_3(st.session_state.region_1_selected, st.session_state.region_2_selected), key="region_3_selected")
@@ -20,7 +20,7 @@ with st.form("my form"):
         alpha = st.number_input("🔢 절단계수를 입력하세요 (권장값: 0.1 ~ 0.3)", min_value=0.0, max_value=1.0, value=0.3)
         update = st.form_submit_button("확인")
 
-code = region.find_code(st.session_state.region_1_selected, st.session_state.region_2_selected, st.session_state.region_3_selected)
+code = region.region_to_code(st.session_state.region_1_selected, st.session_state.region_2_selected, st.session_state.region_3_selected)
 
 # session initialization & update
 if 'day' not in st.session_state:

@@ -3,11 +3,11 @@ import glob
 import zipfile
 import gdown
 
-stay_id = "1KjHxXcm-_RXe9g-QWTgHg1APPBX3Vb4r"
-stay_download = f"https://drive.google.com/uc?id={stay_id}"
-stay_path = "data/stay.zip"
-
-gdown.download(stay_download, stay_path, quiet=False)
+if not glob.glob("data/stay.zip"):
+    stay_id = "1KjHxXcm-_RXe9g-QWTgHg1APPBX3Vb4r"
+    stay_download = f"https://drive.google.com/uc?id={stay_id}"
+    stay_path = "data/stay.zip"
+    gdown.download(stay_download, stay_path, quiet=False)
 
 stay_zip = zipfile.ZipFile("data/stay.zip")
 stay_list = stay_zip.namelist()
